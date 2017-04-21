@@ -8,11 +8,8 @@
   }
 }(this, function(d3) {
 (typeof window === 'undefined' ? global : window).MG = {version: '2.11'};
-
 //a set of helper functions, some that we've written, others that we've borrowed
-
 MG.convert = {};
-
 MG.convert.date = function(data, accessor, time_format) {
   time_format = (typeof time_format === "undefined") ? '%Y-%m-%d' : time_format;
   var parse_time = d3.timeParse(time_format);
@@ -20,10 +17,8 @@ MG.convert.date = function(data, accessor, time_format) {
     d[accessor] = parse_time(d[accessor].trim());
     return d;
   });
-
   return data;
 }
-
 MG.convert.number = function(data, accessor) {
   data = data.map(function(d) {
     d[accessor] = Number(d[accessor]);
@@ -32,11 +27,9 @@ MG.convert.number = function(data, accessor) {
 
   return data;
 }
-
 MG.time_format = function(utc, specifier) {
   return utc ? d3.utcFormat(specifier) : d3.timeFormat(specifier);
 }
-
 function mg_jquery_exists() {
   if (typeof jQuery !== 'undefined' || typeof $ !== 'undefined') {
     return true;
@@ -44,7 +37,6 @@ function mg_jquery_exists() {
     return false;
   }
 }
-
 function mg_get_rollover_time_format(args) {
   var fmt;
   switch (args.processed.x_time_frame) {
@@ -65,18 +57,15 @@ function mg_get_rollover_time_format(args) {
   }
   return fmt;
 }
-
 function mg_data_in_plot_bounds(datum, args) {
   return datum[args.x_accessor] >= args.processed.min_x &&
     datum[args.x_accessor] <= args.processed.max_x &&
     datum[args.y_accessor] >= args.processed.min_y &&
     datum[args.y_accessor] <= args.processed.max_y;
 }
-
 function is_array(thing) {
   return Object.prototype.toString.call(thing) === '[object Array]';
 }
-
 function is_function(thing) {
   return Object.prototype.toString.call(thing) === '[object Function]';
 }
@@ -105,7 +94,6 @@ function is_array_of_objects(data) {
 
   return d3.sum(all_elements) === data.length;
 }
-
 function is_array_of_objects_or_empty(data) {
   return is_empty_array(data) || is_array_of_objects(data);
 }
